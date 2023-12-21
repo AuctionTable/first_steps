@@ -28,16 +28,20 @@ export default function Home() {
             <h2 className="mx-auto mt-[1rem] px-[1rem] text-[1rem] text-text tracking-tight leading-5 text-center">Embark on an Adventure of Bidding, Bargains, and Unforgettable Finds!</h2>
         </div>
 
-        <div className="mt-[1rem] w-full rounded-lg shadow-[0px_0px_60px_8px_rgba(217,217,217)] bg-primary ">
+        <div className="mt-[1rem] w-full rounded-xl shadow-[0px_0px_60px_8px_rgba(217,217,217,0.5)] bg-primary ">
         <Image
             src={hero}
             width={1500}
             
             alt="logo"
-            
-          />
+            />
         </div>
+      </div>
 
+      {/* Feature Section */}
+
+      <div>
+        
       </div>
     </>
   )
