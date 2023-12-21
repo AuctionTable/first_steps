@@ -1,7 +1,12 @@
-import { Inter } from 'next/font/google'
+import { Jost } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const jost = Jost({ 
+  weight: ['400', '600'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
+ })
 
 export const metadata = {
   title: 'Create Next App',
@@ -10,8 +15,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className='h-full bg-primary'>
+      <body className={jost.className}>
+        <main className='relative flex flex-col min-h-screen'>
+          <div className='flex-grow flex-1'>{children}</div>
+        </main>
+      </body>
     </html>
   )
 }
