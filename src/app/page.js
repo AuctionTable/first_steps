@@ -42,8 +42,9 @@ export default function Home() {
 
       {/* Feature Section */}
 
-      <div className="flex px-[2rem] py-[2rem] flex-col items-center text-text">
-        <h1 className="text-[2rem] font-extrabold">How it <span className="text-accent">Works</span>!</h1>
+      <div className="w-full flex px-[2rem] py-[2rem] flex-col items-stretch text-text mt-[2rem]">
+
+        <h1 className="text-[2rem] font-extrabold text-center">How it <span className="text-accent">Works</span>!</h1>
 
       {/* Feature Section Card Collection */}
         <div className="flex flex-col items-stretch justify-center gap-[1.5rem] my-[1.5rem]">
@@ -114,7 +115,7 @@ export default function Home() {
 
             {/* Feature Section Card 5 */}
 
-            <div className="flex flex-col grow items-center justify-center gap-[1rem] px-[1rem] py-[1.5rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"> 
+            <div className="flex flex-col items-center justify-center gap-[1rem] px-[1rem] py-[1.5rem] rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]"> 
 
                 <div className="bg-secondary w-[3.5rem] h-[3.5rem] rounded-full flex items-center justify-center">
                   <div className="bg-accent w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center">
