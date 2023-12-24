@@ -6,19 +6,7 @@ import Link from "next/link"
 export default function Home() {
   return (
     <>
-      <nav className="w-full mx-auto flex px-[1rem] py-[0.75rem] justify-between">
-
-          <Image
-            src={logo}
-            width={120}
-            alt="logo"
-          />
-
-          <div className="flex gap-[0.5rem]">
-              <Link className="rounded-md border-accent border-2 px-[0.5rem] py-[0.25rem] text-[14px] font-semibold text-accent hover:bg-accent hover:text-primary" href={'/login'}>Log In</Link>
-              <Link className="rounded-md border-accent border-2 px-[0.5rem] py-[0.25rem] text-[14px] font-semibold text-primary bg-accent hover:bg-primary hover:text-accent" href={'/login'}>Sign Up</Link>
-          </div>
-      </nav>
+      
 
       {/* Hero Section */}
       <div className="flex px-[1rem] py-[2rem] flex-col">
@@ -137,68 +125,7 @@ export default function Home() {
 
       </div>
 
-      {/* Footer */}
-      <div className="w-full flex px-[2rem] py-[2rem] flex-col items-stretch bg-text text-primary mt-[7rem]">
-
-          <div className="bg-accent px-[2rem] py-[1.5rem] rounded-2xl mt-[-7rem] text-center">
-            <h1 className="font-bold text-[1.25rem] text-primary">with auctiontable</h1>
-            <p>Experience the thrill of auctions from the comfort of your screen!</p>
-          </div>
-
-
-        <div className="flex mt-[2rem] flex-wrap gap-[1rem] items-start justify-evenly">
-
-              <div className="flex flex-col items-center justify-center text-center gap-[1rem]">
-                  <h3 className="text-[1rem] font-bold">Auctiontable</h3>
-                  <div className="text-[0.75rem] flex flex-col items-center justify-center gap-[0.5rem]">
-                    <Link href={'/'}>About Us</Link>
-                    <Link href={'/'}>Newsroom</Link>
-                    <Link href={'/'}>Careers</Link>
-                    <Link href={'/'}>Contact</Link>
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-center justify-center text-center gap-[1rem]">
-                  <h3 className="text-[1rem] font-bold">Learn</h3>
-                  <div className="text-[0.75rem] flex flex-col items-center justify-center gap-[0.5rem]">
-                    <Link href={'/'}>Selling</Link>
-                    <Link href={'/'}>Bidding</Link>
-                    <Link href={'/'}>General Information</Link>
-
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-center justify-center text-center gap-[1rem]">
-                  <h3 className="text-[1rem] font-bold">Other</h3>
-                  <div className="text-[0.75rem] flex flex-col items-center justify-center gap-[0.5rem]">
-                    <Link href={'/'}>Customer Reviews</Link>
-                    <Link href={'/'}>Blogs</Link>
-                    <Link href={'/'}>Community</Link>
-                  </div>
-                </div>
-
-           </div>
-          
-          <div className="w-full h-[.1rem] bg-primary my-[2rem] opacity-30"></div>
-
-          <div className="flex flex-wrap gap-[1rem] items-center justify-center">
-
-          <Link href={'/'}>
-            <Image
-              src={logo}
-              width={100}
-              alt="logo"
-            />
-          </Link>
-
-          <Link className="text-[0.75rem]" href={'/'}>Privacy Policy</Link>
-          <Link className="text-[0.75rem]" href={'/'}>Terms & Condition</Link>
-          <Link className="text-[0.75rem]" href={'/'}>Security</Link>
-          <Link className="text-[0.75rem]" href={'/'}>@2023</Link>
-
-          </div>
-
-      </div>
+      
     </>
   )
 }
