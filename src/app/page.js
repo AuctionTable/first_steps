@@ -2,11 +2,19 @@ import illustration from "../../public/illustration.svg"
 import hero from "../../public/hero2.png"
 import Image from 'next/image'
 import Link from "next/link"
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
     <>
       
+              {/* Navbar */}
+
+              <Navbar/>
+
+      {/* Body Starts */}
+    <div className="sm:px-[2rem] md:px-[3rem] lg:px-[5rem]">
 
       {/* Hero Section */}
       <div className="flex px-[1rem] py-[2rem] flex-col">
@@ -139,7 +147,13 @@ export default function Home() {
 
       </div>
 
+      </div>
+
+      {/* Body Ends */}
+
+              {/* Footer */}
       
+              <Footer/>
     </>
   )
 }
