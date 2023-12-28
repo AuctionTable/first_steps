@@ -9,17 +9,17 @@ export async function POST(request){
     try {
         const reqBody = await request.json();
         const {username, email, password} = reqBody;
-        console.log("here1")
+        
 
         const user = await User.findOne({email});
         console.log(user)
 
         if(user) {
-            console.log("here4")
+            
             return NextResponse.json({error: "User already exist"}, {status: 400})
         }
 
-        console.log("here2")
+        
 
         const newUser = new User({
             username: username,
@@ -28,7 +28,7 @@ export async function POST(request){
         })
 
         const savedUser = await newUser.save();
-        console.log("here3")
+        
 
         return NextResponse.json({
             message: "User saved",

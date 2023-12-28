@@ -16,10 +16,9 @@ export default function SignUpPage(){
         console.log(details)
         try {
             const response = await axios.post("/api/signup", details)
-            console.log(details)
             console.log(response)
         } catch (error) {
-            console.log("nhi", error)
+            console.log("Signup error:", error.response.data.error);
         }
     }
 
