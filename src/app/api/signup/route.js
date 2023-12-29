@@ -19,8 +19,6 @@ export async function POST(request){
             return NextResponse.json({error: "User already exist"}, {status: 400})
         }
 
-        
-
         const newUser = new User({
             username: username,
             email: email,
