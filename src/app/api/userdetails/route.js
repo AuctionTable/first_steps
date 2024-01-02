@@ -1,11 +1,15 @@
 import { getDataFromToken } from "@/helpers/tokenChecker";
 import User from "@/model/userModel";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function GET(request){
+export async function GET(request){
 
     try {
         const userId = await getDataFromToken(request);
-        const user = await User.findOne({_id: userId.id});
+        console.log(userId);
+        const user = await User.findOne({_id: userId});
+        
+        console.log(user);
 
         return NextResponse.json({
             message: "User found",
