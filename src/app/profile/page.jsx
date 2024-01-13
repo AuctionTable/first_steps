@@ -14,7 +14,7 @@ export default function ProfilPage() {
             setUserData(response.data.data);
             console.log(userData);
         } catch (error) {
-            console.log("Login error:", error.response.data.error);
+            console.log("Profile error:", error.response.data.error);
         }
     }
     
@@ -22,12 +22,12 @@ export default function ProfilPage() {
     return(
         <>
         <h1>Profile</h1>
-        <input className="w-[20%] text-text border-[2px] border-b-text" placeholder={userData.email}/>
-        <input className="w-[20%] text-text border-[2px] border-b-text" placeholder={userData.username}/>
-        <input className="w-[20%] text-text border-[2px] border-b-text" placeholder={userData.password}/>
+        <input className="w-[20%] text-text border-[2px] border-b-text mr-2" placeholder={userData.email}/>
+        <input className="w-[20%] text-text border-[2px] border-b-text mr-2" placeholder={userData.username}/>
+        <input className="w-[20%] text-text border-[2px] border-b-text mr-2" placeholder={userData.password}/>
 
-        <button className="p-[0.5rem] bg-accent text-primary " onClick={onGetData}>Click</button>
-        <Link className="p-[0.5rem] bg-accent text-primary " to="/createauction">Create your auction</Link>
+        <button className="p-[0.5rem] bg-accent text-primary mr-2" onClick={onGetData}>Click</button>
+        <Link className="p-[0.5rem] bg-accent text-primary mr-2" href="/createauction">Create your auction</Link>
         </>
     )
 }
