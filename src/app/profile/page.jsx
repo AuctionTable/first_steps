@@ -1,5 +1,6 @@
 "use client"
 import axios from "axios"
+import Link from "next/link";
 import { useEffect, useState } from "react"
 
 
@@ -21,11 +22,12 @@ export default function ProfilPage() {
     return(
         <>
         <h1>Profile</h1>
-        <input className="w-[20%] text-text" placeholder={userData.email}/>
-        <input className="w-[20%] text-text" placeholder={userData.username}/>
-        <input className="w-[20%] text-text" placeholder={userData.password}/>
+        <input className="w-[20%] text-text border-[2px] border-b-text" placeholder={userData.email}/>
+        <input className="w-[20%] text-text border-[2px] border-b-text" placeholder={userData.username}/>
+        <input className="w-[20%] text-text border-[2px] border-b-text" placeholder={userData.password}/>
 
-        <button onClick={onGetData}>Click</button>
+        <button className="p-[0.5rem] bg-accent text-primary " onClick={onGetData}>Click</button>
+        <Link className="p-[0.5rem] bg-accent text-primary " to="/createauction">Create your auction</Link>
         </>
     )
 }

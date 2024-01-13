@@ -24,7 +24,7 @@ export default function LoginPage(){
     return(
         <>
             <div className="w-[50%] mx-auto mt-[4rem] p-[2rem] text-text bg-secondary">
-                <h1 className="text-[2rem]">Sign Up</h1>
+                <h1 className="text-[2rem]">Log in</h1>
 
                 <form onSubmit={onLogin} className="flex flex-col gap-[1rem]">
                     
