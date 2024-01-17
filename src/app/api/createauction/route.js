@@ -27,8 +27,14 @@ export async function POST(request){
         })
         console.log("here 4")
         const savedAuction = await newAuction.save();
+
+        await user.auctions.push(savedAuction._id);
+        await user.save()
         
         console.log(user);
+        console.log(savedAuction);
+
+        //await user.auctions.push[]
         console.log("here 5")
         return NextResponse.json({
             message: "Auction Created",
