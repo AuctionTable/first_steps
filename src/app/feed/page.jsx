@@ -3,7 +3,7 @@ import Cards from '@/components/Cards';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-function page() {
+function FeedPage() {
 
     const [posts, setPosts] = useState([])
 
@@ -37,4 +37,4 @@ function page() {
   )
 }
 
-export default page
+export default FeedPage

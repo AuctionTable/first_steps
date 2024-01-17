@@ -9,15 +9,13 @@ connect();
 export async function POST(request){
 
     try {
-        console.log("here 0")
         const userId = await getDataFromToken(request);
         console.log(userId);
-        console.log("here 1")
+
         const reqBody = await request.json();
-        console.log("here 2")
+
         const {title, description, price} = reqBody;
         const user = await User.findOne({_id: userId});
-        console.log("here 3")
 
         const newAuction = new Auction({
             user: user._id,
@@ -25,7 +23,8 @@ export async function POST(request){
             description: description,
             price: price,
         })
-        console.log("here 4")
+
+        
         const savedAuction = await newAuction.save();
 
         await user.auctions.push(savedAuction._id);
