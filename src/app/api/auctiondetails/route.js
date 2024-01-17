@@ -12,6 +12,7 @@ export async function POST(request){
 
         const auctionDetails = await Auction.findOne({_id: auctionId})
 
+        console.log("here 3")
         return NextResponse.json({
             message: "Fetched",
             data: auctionDetails

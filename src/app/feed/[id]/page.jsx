@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function page({ params }) {
 
-    const [auctionData, setAuctionData] = useState(null);
+    const [auctionData, setAuctionData] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,9 +25,15 @@ function page({ params }) {
         fetchData();
     }, []);
 
+    console.log(auctionData)
+
   return (
-    <div>
-        details
+    <div className='p-[2rem] flex flex-col items-center justify-center gap-4'>
+        <h1 className='text-2xl font-bold'>{auctionData.title}</h1>
+        <p className='text-lg'>{auctionData.description}</p>
+        <span className='font-bold text-xl'>$ {auctionData.price}</span>
+        <input type="number" className='border-2 border-b-text' placeholder='enter the bidding amount'/>
+        <button className='bg-accent px-[1rem] py-[0.5rem]'>Place Bid</button>
     </div>
   )
 }
