@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function Page({ params }) {
+function AuctionIdPage({ params }) {
 
     const [auctionData, setAuctionData] = useState('');
     const [bidDetails, setBidDetails] = useState({
@@ -44,26 +44,36 @@ function Page({ params }) {
         }
     };
 
+    console.log(auctionData)
+
     return (
-        <div className='p-[2rem] flex flex-col items-center justify-center gap-4'>
-            <h1 className='text-2xl font-bold'>{auctionData.title}</h1>
-            <p className='text-lg'>{auctionData.description}</p>
-            <span className='font-bold text-xl'>$ {auctionData.price}</span>
-            <input
-                type="number"
-                className='border-2 border-b-text'
-                placeholder='enter the bidding amount'
-                value={bidDetails.bidPrice}
-                onChange={(e) => setBidDetails({ ...bidDetails, bidPrice: e.target.value })}
-            />
-            <button
-                className='bg-accent px-[1rem] py-[0.5rem]'
-                onClick={onSubmit}
-            >
-                Place Bid
-            </button>
-        </div>
+<div className='p-[2rem] flex flex-col items-center justify-center gap-4'>
+        <h1 className='text-2xl font-bold'>{auctionData.auctionDetails?.title}</h1>
+        <p className='text-lg'>{auctionData.auctionDetails?.description}</p>
+        <span className='font-bold text-xl'>$ {auctionData.auctionDetails?.price}</span>
+
+        <input
+            type="number"
+            className='border-2 border-b-text'
+            placeholder='enter the bidding amount'
+            value={bidDetails.bidPrice}
+            onChange={(e) => setBidDetails({ ...bidDetails, bidPrice: e.target.value })}
+        />
+        <button
+            className='bg-accent px-[1rem] py-[0.5rem]'
+            onClick={onSubmit}
+        >
+            Place Bid
+        </button>
+        
+
+        {auctionData.bidders?.map((bidder) => (
+            <p key={bidder._id} className='text-lg'>
+                Bidder: {bidder.username}
+            </p>
+        ))}
+    </div>
     );
 }
 
-export default Page;
+export default AuctionIdPage;

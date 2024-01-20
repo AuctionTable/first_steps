@@ -1,5 +1,7 @@
 import Auction from "@/model/auctionModel";
+import User from "@/model/userModel";
 import { NextResponse } from "next/server";
+import { getDataFromToken } from "@/helpers/tokenChecker";
 
 export async function POST(request){
     try {
@@ -10,9 +12,16 @@ export async function POST(request){
         console.log("Bid Price:", bidPrice);
         console.log("Auction ID:", auctionId);
 
+        const userId = await getDataFromToken(request);
+        console.log(userId);
+
+        const user = await User.findOne({_id: userId})
+
         const auction = await Auction.findOne({_id: auctionId})
 
         auction.price = bidPrice;
+        await auction.bidders.push(user._id)
+
         await auction.save();
 
         // Add logic for updating the bid in the database if needed
