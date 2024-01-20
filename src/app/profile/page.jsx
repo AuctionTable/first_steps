@@ -2,6 +2,7 @@
 import axios from "axios"
 import Link from "next/link";
 import { useEffect, useState } from "react"
+import Cards from '@/components/Cards';
 
 
 export default function ProfilPage() {
@@ -18,6 +19,9 @@ export default function ProfilPage() {
         }
     }
     
+    useEffect(() => {
+        console.log(userData)
+    },[userData])
 
     return(
         <>
@@ -27,7 +31,14 @@ export default function ProfilPage() {
         <input className="w-[20%] text-text border-[2px] border-b-text mr-2" placeholder={userData.password}/>
 
         <button className="p-[0.5rem] bg-accent text-primary mr-2" onClick={onGetData}>Click</button>
-        <Link className="p-[0.5rem] bg-accent text-primary mr-2" href="/createauction">Create your auction</Link>
+        <Link className="w-[10rem] p-[0.5rem] bg-accent text-primary mr-2 block" href="/createauction">Create your auction</Link>
+
+        <div className='flex flex-wrap gap-5 items-center justify-center p-[2rem]'>
+            <h1 className="">All posts</h1>
+            {Array.isArray(userData.auctions) && userData.auctions.map((post, key) => (
+                    <Cards key={key} details={post} />
+                ))}
+        </div>
         </>
     )
 }

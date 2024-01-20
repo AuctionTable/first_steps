@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     auctions: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "auction",
+        ref: "auctions",
     }],
 })
 
