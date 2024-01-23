@@ -22,5 +22,7 @@ export const config = {
       '/profile',
       '/login',
       '/signup',
+      '/createauction',
+      '/feed',
     ]
   }
