@@ -43,6 +43,18 @@ export async function POST(request){
         return response;
 
     } catch (error) {
-        return NextResponse.json({error: error.message}, {status: 500})
+        console.log(error.message);
+
+        if (error.message === "jwt expired") {
+            // Clear the "token" cookie by setting it with an expiration date in the past
+            const response = NextResponse.json(
+                { error: "Token expired. Please log in again." },
+                { status: 400 }
+            );
+            response.cookies.set("token", "", { expires: new Date(0) });
+            return response;
+        }
+
+        return NextResponse.json({ message: "Login Failed", error: error.message }, { status: 500 });
     }
 }
