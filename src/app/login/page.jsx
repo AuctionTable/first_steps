@@ -23,14 +23,14 @@ export default function LoginPage(){
 
     return(
         <>
-            <div className="w-[50%] mx-auto mt-[4rem] p-[2rem] text-text bg-secondary">
-                <h1 className="text-[2rem]">Log in</h1>
+            <div className="w-[85%] sm:w-[26rem] md:w-[30rem] mx-auto mt-[4rem] p-[2rem] text-text bg-secondary rounded-lg">
+                <h1 className="text-[2rem] text-center font-medium">Log in</h1>
 
-                <form onSubmit={onLogin} className="flex flex-col gap-[1rem]">
+                <form onSubmit={onLogin} className="flex flex-col gap-[0.5rem]">
                     
-                    <label htmlFor="email">Email</label>
+                    <label className="mt-[2rem]" htmlFor="email">Email</label>
                     <input 
-                    className="outline outline-2 outline-text outline-offset-2 p-[0.5rem] rounded-md bg-text bg-opacity-10"
+                    className="input-class"
                     type="email" 
                     id="email" 
                     placeholder="user@gmail.com"
@@ -38,9 +38,9 @@ export default function LoginPage(){
                     onChange={(e) => setDetails({...details, email: e.target.value})}
                     />
 
-                    <label htmlFor="pass">Password</label>
+                    <label className="mt-[1rem]" htmlFor="pass">Password</label>
                     <input 
-                    className="outline outline-2 outline-text outline-offset-2 p-[0.5rem] rounded-md bg-text bg-opacity-10" 
+                    className="input-class" 
                     type="password" 
                     placeholder="Password"
                     value={details.password}
@@ -49,9 +49,14 @@ export default function LoginPage(){
 
                     <button 
                         type="submit"
-                        className="outline outline-2 outline-text outline-offset-2 p-[0.5rem] rounded-md bg-accent text-primary font-bold">
+                        className="mt-[1rem] btn-primary">
                         Submit
                     </button>
+
+                    <div className="text-sm text-center mt-[1rem]">Don't have a account ? 
+                            <a href="/signup" className="underline underline-offset-2">Signup here</a>
+                    </div>
+
                 </form>
             </div>
         </>
