@@ -18,6 +18,15 @@ export default function ProfilPage() {
             console.log("Profile error:", error.response.data.error);
         }
     }
+
+    const onLogout = async () => {
+        try {
+            const response = await axios.get("/api/logout");
+            console.log(response)
+        } catch (error) {
+            console.log("Logout error:", error.response.data.error);
+        }
+    }
     
     useEffect(() => {
         console.log(userData)
@@ -48,7 +57,9 @@ export default function ProfilPage() {
 
             <hr className="w-[100%] my-[1rem] opacity-20"/>
 
-            <button className="mt-[1rem] md:w-[18rem] md:mx-auto btn-primary bg-secondary text-accent outline-accent">Logout</button>
+            <button className="mt-[1rem] md:w-[18rem] md:mx-auto btn-primary bg-secondary text-accent outline-accent"
+                    onClick={onLogout}
+            >Logout</button>
         </div>
     )
 }
