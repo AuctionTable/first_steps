@@ -19,26 +19,29 @@ export default function CreateAuction(){
     }
 
     return(
-        <>
+        <div className="w-[90%] sm:w-[80%] md:w-[32rem] lg:w-[45rem] mx-auto p-[1rem] sm:p-[2rem] flex flex-col gap-[1rem]">
+
+            <h1 className="text-[1.5rem] text-center font-medium">Create Auction</h1>
+
             <input type="text"
-                   className="w-[20%] text-text border-[2px] border-b-text mr-2" 
+                   className="input-class" 
                    placeholder="Title of the Auction"
                    value={details.title}
                    onChange={(e) => setDetails({...details, title: e.target.value})}
                    />
             <textarea rows="2" 
-                      className="w-[20%] text-text border-[2px] border-b-text mr-2"
+                      className="input-class"
                       placeholder="enter desc"
                       value={details.description}
                       onChange={(e) => setDetails({...details, description: e.target.value})}
                       ></textarea>
             <input type="number" 
-                   className="w-[20%] text-text border-[2px] border-b-text mr-2"
+                   className="input-class"
                    placeholder="enter price"
                    value={details.price}
                    onChange={(e) => setDetails({...details, price: e.target.value})}
                    />
-            <button className="p-[0.5rem] bg-accent text-primary" onClick={onCreate}>Submit</button>
-        </>
+            <button className="mt-[1rem] md:w-[18rem] md:mx-auto btn-primary" onClick={onCreate}>Submit</button>
+        </div>
     )
 }

@@ -5,10 +5,10 @@
 
 @layer components {
     .input-class {
-      @apply outline outline-2 outline-text outline-offset-2 p-[0.5rem] rounded-md bg-text bg-opacity-10;
+      @apply outline outline-2 outline-text outline-offset-2 p-[0.5rem] text-[1rem] rounded-md bg-text bg-opacity-10;
     }
 
     .btn-primary {
-        @apply outline outline-2 outline-text outline-offset-2 p-[0.5rem] rounded-md bg-accent text-primary font-bold;
+        @apply outline outline-2 outline-text outline-offset-2 p-[0.5rem] rounded-md bg-accent text-primary text-center font-bold;
     }
 }

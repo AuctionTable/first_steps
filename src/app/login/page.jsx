@@ -54,7 +54,7 @@ export default function LoginPage(){
                     </button>
 
                     <div className="text-sm text-center mt-[1rem]">Don't have a account ? 
-                            <a href="/signup" className="underline underline-offset-2">Signup here</a>
+                            <a href="/signup" className="underline underline-offset-2"> Signup here</a>
                     </div>
 
                 </form>

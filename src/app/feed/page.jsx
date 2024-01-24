@@ -28,8 +28,8 @@ function FeedPage() {
       }, [posts]); // UseEffect will be triggered whenever posts state changes
 
   return (
-    <div className='flex flex-wrap gap-5 items-center justify-center p-[2rem]'>
-        <h1 className='text-xl w-[100%] text-center'>Feed</h1>
+    <div className='w-[90%] sm:w-[80%] md:w-[40rem] lg:w-[48rem] xl:w-[58rem] mx-auto p-[1rem] sm:p-[2rem] flex flex-wrap gap-[1rem]'>
+        <h1 className="w-[100%] text-[1.5rem] text-center font-medium">Feed</h1>
         {posts.map((post, key) => (
             <Cards key={key} details={post} />
       ))}

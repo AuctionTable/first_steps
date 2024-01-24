@@ -47,32 +47,41 @@ function AuctionIdPage({ params }) {
     console.log(auctionData)
 
     return (
-<div className='p-[2rem] flex flex-col items-center justify-center gap-4'>
-        <h1 className='text-2xl font-bold'>{auctionData.auctionDetails?.title}</h1>
-        <p className='text-lg'>{auctionData.auctionDetails?.description}</p>
-        <span className='font-bold text-xl'>$ {auctionData.auctionDetails?.price}</span>
+        <>
 
-        <input
-            type="number"
-            className='border-2 border-b-text'
-            placeholder='enter the bidding amount'
-            value={bidDetails.bidPrice}
-            onChange={(e) => setBidDetails({ ...bidDetails, bidPrice: e.target.value })}
-        />
-        <button
-            className='bg-accent px-[1rem] py-[0.5rem]'
-            onClick={onSubmit}
-        >
-            Place Bid
-        </button>
+        <h1 className="text-[2rem] text-center font-medium mt-[2rem]">Place your Bid</h1>
+
+        <div className='w-[85%] sm:w-[26rem] md:w-[30rem] mx-auto mt-[1rem] p-[2rem] text-text bg-secondary rounded-lg flex flex-col gap-[0.5rem]'>
+            <h1 className='text-[1.5rem] font-bold'>{auctionData.auctionDetails?.title}</h1>
+            <p className='text-lg'>{auctionData.auctionDetails?.description}</p>
+            <span className='text-accent font-bold text-[1.8rem] mt-[1rem]'>₹ {auctionData.auctionDetails?.price}</span>
+
+            <input
+                type="number"
+                className='input-class mt-[1rem]'
+                placeholder='enter the bidding amount'
+                value={bidDetails.bidPrice}
+                onChange={(e) => setBidDetails({ ...bidDetails, bidPrice: e.target.value })}
+            />
+            <button
+                className='btn-primary my-[1rem]'
+                onClick={onSubmit}
+            >
+                Place Bid
+            </button>
+
+        </div>
+
+        <div className='w-[85%] sm:w-[26rem] md:w-[30rem] mx-auto mt-[1rem] p-[2rem] text-text bg-secondary rounded-lg flex flex-col gap-[0.5rem]'>
+        {auctionData.bidders?.map((bidder) => (
+                <p key={bidder._id} className='text-lg'>
+                    Bidder: {bidder.username}
+                </p>
+        ))}
+        </div>
         
 
-        {auctionData.bidders?.map((bidder) => (
-            <p key={bidder._id} className='text-lg'>
-                Bidder: {bidder.username}
-            </p>
-        ))}
-    </div>
+        </>
     );
 }
 

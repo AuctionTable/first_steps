@@ -24,21 +24,31 @@ export default function ProfilPage() {
     },[userData])
 
     return(
-        <>
-        <h1>Profile</h1>
-        <input className="w-[20%] text-text border-[2px] border-b-text mr-2" placeholder={userData.email}/>
-        <input className="w-[20%] text-text border-[2px] border-b-text mr-2" placeholder={userData.username}/>
-        <input className="w-[20%] text-text border-[2px] border-b-text mr-2" placeholder={userData.password}/>
+        <div className="w-[100%] sm:w-[80%] md:w-[32rem] lg:w-[45rem] mx-auto p-[1rem] sm:p-[2rem] flex flex-col gap-[1rem]">
+            <h1 className="text-[1.5rem] text-center font-medium">Profile</h1>
 
-        <button className="p-[0.5rem] bg-accent text-primary mr-2" onClick={onGetData}>Click</button>
-        <Link className="w-[10rem] p-[0.5rem] bg-accent text-primary mr-2 block" href="/createauction">Create your auction</Link>
+            <div className="w-[100%] flex flex-wrap gap-[1rem]">    
+                <input className="w-[100%] sm:w-[48%] lg:w-[29%] flex-grow input-class" placeholder={userData.user?.email}/>
+                <input className="w-[100%] sm:w-[48%] lg:w-[29%] flex-grow input-class" placeholder={userData.user?.username}/>
+                <input className="w-[100%] sm:w-[48%] lg:w-[29%] flex-grow input-class" placeholder={userData.user?.password}/>
+            </div>
 
-        <div className='flex flex-wrap gap-5 items-center justify-center p-[2rem]'>
-            <h1 className="">All posts</h1>
-            {Array.isArray(userData.auctions) && userData.auctions.map((post, key) => (
-                    <Cards key={key} details={post} />
-                ))}
+            <button className="md:w-[18rem] md:mx-auto btn-primary" onClick={onGetData}>Click</button>
+
+            <hr className="w-[100%] my-[1rem] opacity-20"/>
+
+            <div className='flex flex-col sm:flex-row flex-wrap gap-[1rem] items-center justify-center'>
+                <h1 className="w-[100%] text-center">All auctions you posted</h1>
+                {Array.isArray(userData.auctions) && userData.auctions.map((post, key) => (
+                        <Cards key={key} details={post} />
+                    ))}
+            </div>
+
+            <Link className="mt-[1rem] md:w-[18rem] md:mx-auto btn-primary" href="/createauction">Create auction</Link>
+
+            <hr className="w-[100%] my-[1rem] opacity-20"/>
+
+            <button className="mt-[1rem] md:w-[18rem] md:mx-auto btn-primary bg-secondary text-accent outline-accent">Logout</button>
         </div>
-        </>
     )
 }

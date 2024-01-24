@@ -5,10 +5,10 @@ function Cards({ details }) {
   console.log("here", details);
 
   return (
-    <a href={`/feed/${details._id}`} className='bg-secondary px-[1rem] py-[0.5rem] rounded-md flex flex-col gap-4'>
-      <h1>{details.title}</h1>
+    <a href={`/feed/${details._id}`} className='w-[100%] sm:w-[45%] flex-grow bg-secondary p-[1rem] rounded-lg flex flex-col gap-[0.75rem]'>
+      <h1 className='text-[1.5rem] font-medium'>{details.title}</h1>
       <p>{details.description}</p>
-      <h1 className='text-accent font-bold'>{details.price}</h1>
+      <h1 className='text-accent font-bold text-[1.5rem]'>₹ {details.price}</h1>
     </a>
   );
 }
