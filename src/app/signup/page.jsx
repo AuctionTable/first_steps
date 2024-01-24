@@ -1,9 +1,11 @@
 "use client"
 import { useState } from "react"
 import axios from "axios"
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage(){
 
+    const router = useRouter();
     const[details, setDetails] = useState({
         username: "",
         email: "",
@@ -17,6 +19,7 @@ export default function SignUpPage(){
         try {
             const response = await axios.post("/api/signup", details)
             console.log(response)
+            router.push('/login')
         } catch (error) {
             console.log("Signup error:", error.response.data.error);
         }

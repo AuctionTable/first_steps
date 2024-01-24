@@ -9,15 +9,19 @@ export default function ProfilPage() {
 
     const [userData, setUserData] = useState({});
 
-    const onGetData = async() => {
-        try {
-            const response = await axios.get("/api/userdetails");
-            setUserData(response.data.data);
-            console.log(userData);
-        } catch (error) {
-            console.log("Profile error:", error.response.data.error);
+    useEffect(() => {
+        const onGetData = async() => {
+            try {
+                const response = await axios.get("/api/userdetails");
+                setUserData(response.data.data);
+                console.log(userData);
+            } catch (error) {
+                console.log("Profile error:", error.response.data.error);
+            }
         }
-    }
+
+        onGetData()
+    },[])
 
     const onLogout = async () => {
         try {
@@ -33,7 +37,9 @@ export default function ProfilPage() {
     },[userData])
 
     return(
-        <div className="w-[100%] sm:w-[80%] md:w-[32rem] lg:w-[45rem] mx-auto p-[1rem] sm:p-[2rem] flex flex-col gap-[1rem]">
+        <div className="relative w-[100%] sm:w-[80%] md:w-[32rem] lg:w-[45rem] mx-auto p-[1rem] sm:p-[2rem] flex flex-col gap-[1rem]">
+            <a className='absolute btn-primary bg-secondary text-accent outline-none py-[0.25rem] px-[0.75rem] rounded-lg left-[1.75rem]' href="/feed">←</a>
+
             <h1 className="text-[1.5rem] text-center font-medium">Profile</h1>
 
             <div className="w-[100%] flex flex-wrap gap-[1rem]">    
@@ -41,8 +47,6 @@ export default function ProfilPage() {
                 <input className="w-[100%] sm:w-[48%] lg:w-[29%] flex-grow input-class" placeholder={userData.user?.username}/>
                 <input className="w-[100%] sm:w-[48%] lg:w-[29%] flex-grow input-class" placeholder={userData.user?.password}/>
             </div>
-
-            <button className="md:w-[18rem] md:mx-auto btn-primary" onClick={onGetData}>Click</button>
 
             <hr className="w-[100%] my-[1rem] opacity-20"/>
 
