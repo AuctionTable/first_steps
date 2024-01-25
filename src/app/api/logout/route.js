@@ -12,8 +12,6 @@ export async function GET(request){
         {
             httpOnly: true,
             expires: new Date(0),
-            domain: ".vercel.app",
-            path: "/",
         })
 
         return response;
