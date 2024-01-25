@@ -24,6 +24,5 @@ export const config = {
       '/signup',
       '/createauction',
       '/feed',
-      '/feed/[id]',
     ]
   }
