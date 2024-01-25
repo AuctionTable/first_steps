@@ -3,10 +3,12 @@ import axios from "axios"
 import Link from "next/link";
 import { useEffect, useState } from "react"
 import Cards from '@/components/Cards';
+import { useRouter } from "next/navigation";
 
 
 export default function ProfilPage() {
 
+    const router = useRouter()
     const [userData, setUserData] = useState({});
 
     useEffect(() => {
