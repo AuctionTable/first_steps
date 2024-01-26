@@ -13,7 +13,7 @@ export async function GET(request){
         return NextResponse.json({
             message: "Posts found",
             data: posts,
-        })
+        }, { headers: { 'Cache-Control': 'no-cache' } })
 
     } catch (error) {
         console.log(error.message);
