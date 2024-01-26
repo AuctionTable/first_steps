@@ -2,6 +2,8 @@ import { connect } from "@/dbConfig/dbConfig";
 import Auction from "@/model/auctionModel";
 import { NextResponse } from "next/server";
 
+export const revalidate = 0; // this is the new line added
+
 connect();
 
 export async function GET(request){
