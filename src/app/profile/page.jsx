@@ -10,6 +10,7 @@ export default function ProfilPage() {
 
     const router = useRouter()
     const [userData, setUserData] = useState({});
+    const [key, setKey] = useState('')
 
     useEffect(() => {
         const onGetData = async() => {
@@ -27,7 +28,8 @@ export default function ProfilPage() {
 
     const onLogout = async () => {
         try {
-            const response = await axios.get("/api/logout");
+            setKey('key')
+            const response = await axios.post("/api/logout", {key});
             console.log(response)
         } catch (error) {
             console.log("Logout error:", error.response.data.error);

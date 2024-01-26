@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 
-export async function GET(request){
+export async function POST(request){
     try {
         
+        const reqBody = request.json();
+        const {key} = reqBody
+        console.log(key)
+
         const response = NextResponse.json({
             message: "Logout Successfull",
             success: true,
