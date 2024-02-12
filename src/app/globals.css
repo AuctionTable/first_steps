@@ -12,3 +12,19 @@
         @apply outline outline-2 outline-text outline-offset-2 p-[0.5rem] rounded-md bg-accent text-primary text-center font-bold;
     }
 }
+
+.error{
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translate(-50%, -50%);
+}
+15%, 65% {
+    transform: translate(-45%, -50%);
+}
+50% {
+    transform: translate(-50%, -50%);
+}
+}
