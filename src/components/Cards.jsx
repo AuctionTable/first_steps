@@ -1,8 +1,6 @@
 import React from 'react';
 
 function Cards({ details }) {
-    
-  console.log("here", details);
 
   return (
     <a href={`/feed/${details._id}`} className='w-[100%] sm:w-[45%] flex-grow bg-secondary p-[1rem] rounded-lg flex flex-col gap-[0.75rem]'>

@@ -9,6 +9,7 @@ function AuctionIdPage() {
     const pathname = usePathname()
     const router = useRouter()
 
+    const [sameOwner, setSameOwner] = useState('')
     const [auctionData, setAuctionData] = useState('');
     const [bidDetails, setBidDetails] = useState({
         bidPrice: '',
@@ -18,12 +19,25 @@ function AuctionIdPage() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        // Set auctionId using window.location.href.split('/').pop() on the client side
+
         setBidDetails((prevBidDetails) => ({
             ...prevBidDetails,
             auctionId: pathname.split('/')[2],
         }));
-    }, []); // Empty dependency array ensures this effect runs only once on component mount
+
+        async function verify() {
+            try {
+                const response = await axios.get("/api/userdetails");
+                const resAuction = response.data.data.auctions;
+                const hasMatchingAuction = resAuction.some(auction => auction._id === pathname.split('/')[2]);
+                setSameOwner(hasMatchingAuction);
+            } catch (error) {
+                console.error("Error fetching user details:", error);
+            }
+        }   
+
+        verify()
+    }, []); 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -95,19 +109,24 @@ function AuctionIdPage() {
             <p className='text-lg'>{auctionData.auctionDetails?.description}</p>
             <span className='text-accent font-bold text-[1.8rem] mt-[1rem]'>₹ {auctionData.auctionDetails?.price}</span>
 
-            <input
-                type="number"
-                className='input-class mt-[1rem]'
-                placeholder='enter the bidding amount'
-                value={bidDetails.bidPrice}
-                onChange={(e) => setBidDetails({ ...bidDetails, bidPrice: e.target.value })}
-            />
-            <button
-                className='btn-primary my-[1rem]'
-                onClick={onSubmit}
-            >
-                Place Bid
-            </button>
+            {sameOwner ? null : (
+                <>
+                    <input
+                        type="number"
+                        className='input-class mt-[1rem]'
+                        placeholder='enter the bidding amount'
+                        value={bidDetails.bidPrice}
+                        onChange={(e) => setBidDetails({ ...bidDetails, bidPrice: e.target.value })}
+                    />
+                    <button
+                        className='btn-primary my-[1rem]'
+                        onClick={onSubmit}
+                    >
+                        Place Bid
+                    </button>
+                </>
+            )}
+            
 
         </div>
 

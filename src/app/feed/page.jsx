@@ -6,8 +6,27 @@ import React, { useEffect, useState } from 'react'
 function FeedPage() {
 
     const [posts, setPosts] = useState([])
+    const [actualPosts, setActualPosts] = useState([])
     const [errors, setErrors] = useState(null); // State to hold validation errors
     const [loading, setLoading] = useState(false)
+    const [input, setInput] = useState("")
+
+    useEffect(() => {
+      const delayDebounceFn = setTimeout(() => {
+          filterPosts();
+      }, 2000); // Adjust the debounce delay as needed (in milliseconds)
+
+      return () => clearTimeout(delayDebounceFn);
+  }, [input]);
+
+  const filterPosts = () => {
+      setLoading(true);
+      const filter = posts.filter((post) => {
+          return (post.title.toLowerCase()).includes(input.toLowerCase());
+      });
+      setActualPosts(filter);
+      setLoading(false);
+  };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,9 +78,22 @@ function FeedPage() {
         <a className='btn-primary bg-secondary text-accent outline-accent absolute right-0 mr-[1rem] sm:mr-[2rem] py-[0.25rem]' href="/profile">Profile</a>
         <a className='btn-primary bg-secondary text-accent outline-accent fixed right-0 mr-[1rem] sm:mr-[10%] md:mr-[12%] lg:mr-[18%] bottom-[2rem] rounded-full px-[0.5rem] py-[0.25rem] font-semibold text-[1rem] drop-shadow-lg' href="/createauction">Create Auction</a>
         <h1 className="w-[100%] text-[1.5rem] text-center font-semibold">Feed</h1>
-        {posts.map((post, key) => (
-            <Cards key={key} details={post} />
-      ))}
+
+        <input type="text" 
+              placeholder='search' 
+              onChange={(e) => setInput(e.target.value)}
+              className='w-[100%]'
+              />
+
+        { input ? (
+            actualPosts.map((post, key) => (
+                <Cards key={key} details={post} />
+            ))
+        ) : (
+            posts.map((post, key) => (
+                <Cards key={key} details={post} />
+            ))
+        )}
     
     </div>
   )
