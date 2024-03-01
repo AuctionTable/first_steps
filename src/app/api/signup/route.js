@@ -1,8 +1,15 @@
 import { connect } from "@/dbConfig/dbConfig";
 import User from "@/model/userModel";
 import {  NextResponse } from "next/server";
+import { z } from 'zod';
 
 connect();
+
+const signupSchema = z.object({
+    username: z.string(),
+    email: z.string().email(),
+    password: z.string().min(3)
+})
 
 export async function POST(request){
 
@@ -10,13 +17,17 @@ export async function POST(request){
         const reqBody = await request.json();
         const {username, email, password} = reqBody;
         
+        const {success} = signupSchema.safeParse(reqBody)
+
+        if(!success) {
+            return NextResponse.json({message: "Invalid Input"}, {status: 400})
+        }
 
         const user = await User.findOne({email});
-        console.log(user)
 
         if(user) {
             
-            return NextResponse.json({error: "User already exist"}, {status: 400})
+            return NextResponse.json({message: "User already exist"}, {status: 400})
         }
 
         const newUser = new User({

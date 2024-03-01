@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose, { mongo } from "mongoose"
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -18,6 +18,13 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "auctions",
     }],
+    biddedAuction: [{
+        auctionId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "auction",
+        },
+        biddedAmount: Number,
+    }]
 })
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);

@@ -9,11 +9,12 @@ function AuctionIdPage() {
     const pathname = usePathname()
     const router = useRouter()
 
-    const [sameOwner, setSameOwner] = useState('')
+    const [sameOwner, setSameOwner] = useState(false)
     const [auctionData, setAuctionData] = useState('');
     const [bidDetails, setBidDetails] = useState({
         bidPrice: '',
         auctionId: '',
+        bidderId: '',
     });
     const [errors, setErrors] = useState(null); // State to hold validation errors
     const [loading, setLoading] = useState(false)
@@ -28,12 +29,30 @@ function AuctionIdPage() {
         async function verify() {
             try {
                 const response = await axios.get("/api/userdetails");
-                const resAuction = response.data.data.auctions;
-                const hasMatchingAuction = resAuction.some(auction => auction._id === pathname.split('/')[2]);
-                setSameOwner(hasMatchingAuction);
+                const resAuction = response.data.data.user.auctions;
+                console.log(resAuction) // if it is empty don't enter if
+                console.log(response)
+
+                if (resAuction.length > 0) {
+                    console.log(1)
+                    const hasMatchingAuction = resAuction.filter(auction => auction == pathname.split('/')[2]);
+                    if (hasMatchingAuction.length > 0) {
+                        console.log("User is the owner of this auction");
+                        setSameOwner(true);
+                    } else {
+                        console.log("User is not the owner of this auction");
+                        setSameOwner(false);
+                    }
+                } else {
+                    console.log("No auctions found for the user.");
+                    setSameOwner(false);
+                }
+
             } catch (error) {
                 console.error("Error fetching user details:", error);
             }
+
+            console.log("sameOwner:", sameOwner);
         }   
 
         verify()
