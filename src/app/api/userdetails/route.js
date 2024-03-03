@@ -14,15 +14,16 @@ export async function GET(request){
 
         // Fetch auction details
         const auctionIds = user.auctions || [];
-        const auctions = await Auction.find({ _id: { $in: auctionIds } });
-
-        console.log(auctions);
-
+        let auctions
+        if(auctionIds.length > 0){
+            auctions = await Auction.find({ _id: { $in: auctionIds } });
+        }
+        
         return NextResponse.json({
             message: "User found",
             data: {
                 user,
-                auctions,
+                auctions
             },
         })
         

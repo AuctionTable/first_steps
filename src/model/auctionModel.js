@@ -8,9 +8,15 @@ const auctionSchema = new mongoose.Schema({
     title: String,
     description: String,
     price: Number,
+    startDate: Date,
+    endDate: Date,
+    isOpen: Boolean,
     bidders: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "users",
+        },
+        biddedAmount: Number,
     }]
 })
 

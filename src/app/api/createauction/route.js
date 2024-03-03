@@ -14,7 +14,7 @@ export async function POST(request){
 
         const reqBody = await request.json();
 
-        const {title, description, price} = reqBody;
+        const {title, description, price, startDate, endDate} = reqBody;
         const user = await User.findOne({_id: userId});
 
         const newAuction = new Auction({
@@ -22,6 +22,9 @@ export async function POST(request){
             title: title,
             description: description,
             price: price,
+            startDate: startDate,
+            endDate: endDate,
+            isOpen: false,
         })
 
         

@@ -7,22 +7,28 @@ export async function POST(request){
     try {
         
         const reqBody = await request.json();
-        const { bidPrice, auctionId } = reqBody; // Destructuring bidPrice and auctionId from reqBody
+        const { bidPrice, auctionId, bidderId } = reqBody; // Destructuring bidPrice and auctionId from reqBody
 
         console.log("Bid Price:", bidPrice);
         console.log("Auction ID:", auctionId);
 
         const userId = await getDataFromToken(request);
-        console.log(userId);
+        console.log(userId + "isSame" + bidderId);
 
-        const user = await User.findOne({_id: userId})
+        const user = await User.findOneAndUpdate({_id: userId},{
+            $push: {biddedAuction: {
+                auctionId: auctionId,
+                biddedAmount: bidPrice,
+            }}
+        }, {new: true})
 
-        const auction = await Auction.findOne({_id: auctionId})
-
-        auction.price = bidPrice;
-        await auction.bidders.push(user._id)
-
-        await auction.save();
+        const auction = await Auction.findOneAndUpdate({_id: auctionId},{
+            $set: {price: bidPrice},
+            $push: {bidders: {
+                user: userId,
+                biddedAmount: bidPrice,
+            }}
+        }, { new: true })
 
         // Add logic for updating the bid in the database if needed
 
