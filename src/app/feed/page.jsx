@@ -56,7 +56,7 @@ function FeedPage() {
       }, [posts]); // UseEffect will be triggered whenever posts state changes
 
   return (
-    <div className='relative w-[90%] h-screen sm:w-[80%] md:w-[40rem] lg:w-[48rem] xl:w-[58rem] mx-auto p-[1rem] sm:p-[2rem] flex flex-wrap gap-[1rem]'>
+    <div className='relative w-[90%] h-screen sm:w-[80%] md:w-[40rem] lg:w-[48rem] xl:w-[58rem] mx-auto p-[1rem] sm:p-[2rem] flex flex-col gap-[1rem]'>
 
             {errors && (
                 <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-primary p-[1rem] rounded-md transition-all error">
@@ -76,15 +76,16 @@ function FeedPage() {
             )}
 
         <a className='btn-primary bg-secondary text-accent outline-accent absolute right-0 mr-[1rem] sm:mr-[2rem] py-[0.25rem]' href="/profile">Profile</a>
-        <a className='btn-primary bg-secondary text-accent outline-accent fixed right-0 mr-[1rem] sm:mr-[10%] md:mr-[12%] lg:mr-[18%] bottom-[2rem] rounded-full px-[0.5rem] py-[0.25rem] font-semibold text-[1rem] drop-shadow-lg' href="/createauction">Create Auction</a>
+        <a className='btn-primary bg-secondary text-accent outline-accent fixed right-0 mr-[1rem] sm:mr-[10%] md:mr-[12%] lg:mr-[18%] bottom-[2rem] rounded-full px-[0.5rem] py-[0.25rem] font-semibold text-[1rem] drop-shadow-lg z-50' href="/createauction">Create Auction</a>
         <h1 className="w-[100%] text-[1.5rem] text-center font-semibold">Feed</h1>
 
         <input type="text" 
               placeholder='search' 
               onChange={(e) => setInput(e.target.value)}
-              className='w-[100%]'
+              className='w-[100%] p-[0.5rem]'
               />
 
+        <div className='w-[100%] flex flex-wrap gap-[1rem] justify-between'>
         { input ? (
             actualPosts.map((post, key) => (
                 <Cards key={key} details={post} />
@@ -94,6 +95,8 @@ function FeedPage() {
                 <Cards key={key} details={post} />
             ))
         )}
+        </div>
+        
     
     </div>
   )

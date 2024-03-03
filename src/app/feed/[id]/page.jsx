@@ -84,8 +84,15 @@ function AuctionIdPage() {
 
     const onSubmit = async () => {
         setLoading(true)
+        if(bidDetails.bidPrice <= auctionData.auctionDetails.price ) {
+            setErrors("Bidding amount should be greater than price")
+            setTimeout(() => {
+                setErrors(''); // Reset showErr to false after 200ms
+            }, 3000);
+            setLoading(false)
+            return
+        }
         try {
-            
             const res = await axios.post("/api/bid", bidDetails);
             console.log(res);
             router.refresh()
@@ -109,7 +116,7 @@ function AuctionIdPage() {
                 <div className="z-50 absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-primary p-[1rem] rounded-md transition-all error">
                     <button className="absolute right-2 top-0" onClick={()=> {setErrors(null)}}>x</button>
                     
-                        <div key="api-error">{errors.message}</div>
+                        <div key="api-error">{errors}</div>
                     
                 </div>
             )}
