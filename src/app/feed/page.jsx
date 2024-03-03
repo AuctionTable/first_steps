@@ -85,6 +85,11 @@ function FeedPage() {
               className='w-[100%] p-[0.5rem]'
               />
 
+        <div className='w-[100%] flex justify-start items-center gap-[1rem]'>
+            <a className='btn-primary text-[0.75rem]' href="/liveauctions">Live Auctions</a>
+            <a className='btn-primary text-[0.75rem]' href="/waitingauctions">Auctions too be opened</a>
+        </div>
+
         <div className='w-[100%] flex flex-wrap gap-[1rem] justify-between'>
         { input ? (
             actualPosts.map((post, key) => (

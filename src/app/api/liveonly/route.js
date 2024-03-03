@@ -8,7 +8,11 @@ connect();
 
 export async function GET(request){
     try {
+        const url = new URL(request.url);
+        const type = url.searchParams.get('type');
+        console.log(type);
 
+        if( type == 'wait'){
             const today = new Date().getTime();
             const posts = await Auction.find({
                 $and: [
@@ -22,6 +26,23 @@ export async function GET(request){
                 message: "Posts found",
                 data: posts,
             }, { headers: { 'Cache-Control': 'no-cache' } })
+        } else {
+            const today = new Date().getTime();
+            const posts = await Auction.find({
+                $and: [
+                    { endDate: { $gte: today } },
+                    { isOpen: true } // Directly check if isOpen is true
+                ]
+            })
+            console.log(posts)
+
+            return NextResponse.json({
+                message: "Posts found",
+                data: posts,
+            }, { headers: { 'Cache-Control': 'no-cache' } })
+        }
+
+            
         
 
     } catch (error) {

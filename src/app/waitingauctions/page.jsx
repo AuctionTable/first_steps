@@ -13,7 +13,7 @@ function page() {
 
   async function get() {
     try {
-      const { data } = await axios.get('/api/liveonly?type=live');
+      const { data } = await axios.get('/api/liveonly?type=wait');
       console.log('Fetched posts:', data); // Add this line to check the value of data
       setPosts(data.data);
     } catch (error) {
