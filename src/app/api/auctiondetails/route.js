@@ -11,12 +11,6 @@ export async function POST(request){
 
         const auctionDetails = await Auction.findOne({_id: auctionId})
 
-        const today = new Date().getTime();
-        const startDate = new Date(auctionDetails.startDate).getTime()
-        const endDate = new Date(auctionDetails.endDate).getTime()
-
-        auctionDetails.isOpen = startDate <= today && endDate >= today;
-
         await auctionDetails.save();
 
         const biddersId = auctionDetails.bidders || [];
