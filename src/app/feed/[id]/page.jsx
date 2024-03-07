@@ -104,30 +104,32 @@ function AuctionIdPage() {
 
             <h1 className="w-[100%] text-[2rem] text-center font-medium mt-[2rem]">Place your Bid</h1>
 
-            {auctionData && (<div className='relative w-[85%] sm:w-[26rem] md:w-[30rem] mx-auto mt-[1rem] p-[2rem] text-text bg-secondary rounded-lg flex flex-col gap-[0.5rem]'>
-                <a className='absolute btn-primary bg-secondary text-accent outline-none py-[0.25rem] px-[0.75rem] rounded-lg right-0 -top-[3.4rem]' href="/feed">x</a>
-                <h1 className='text-[1.5rem] font-bold'>{auctionData.auctionDetails?.title}</h1>
-                <p className='text-lg'>{auctionData.auctionDetails?.description}</p>
-                <span className='text-accent font-bold text-[1.8rem] mt-[1rem]'>₹ {auctionData.auctionDetails?.price}</span>
+            {auctionData && (
+                <div className='relative w-[85%] sm:w-[26rem] md:w-[30rem] mx-auto mt-[1rem] p-[2rem] text-text bg-secondary rounded-lg flex flex-col gap-[0.5rem]'>
+                      <a className='absolute btn-primary bg-secondary text-accent outline-none py-[0.25rem] px-[0.75rem] rounded-lg right-0 -top-[3.4rem]' href="/feed">x</a>
+                      <h1 className='text-[1.5rem] font-bold'>{auctionData.auctionDetails?.title}</h1>
+                      <p className='text-lg'>{auctionData.auctionDetails?.description}</p>
+                      <span className='text-accent font-bold text-[1.8rem] mt-[1rem]'>₹ {auctionData.auctionDetails?.price}</span>
 
-                {(sameOwner || !auctionData.auctionDetails?.isOpen) ? null : (
-                    <>
-                        <input
+                      {(sameOwner || !auctionData.auctionDetails?.isOpen) ? null : (
+                        <>
+                          <input
                             type="number"
                             className='input-class mt-[1rem]'
                             placeholder='enter the bidding amount'
                             value={bidDetails.bidPrice}
                             onChange={(e) => setBidDetails({ ...bidDetails, bidPrice: e.target.value })}
-                        />
-                        <button
+                          />
+                          <button
                             className='btn-primary my-[1rem]'
                             onClick={onSubmit}
-                        >
+                          >
                             Place Bid
-                        </button>
-                    </>
+                          </button>
+                        </>
+                      )}
+                    </div>
                 )}
-            </div> )}
 
             <div className='w-[85%] sm:w-[26rem] md:w-[30rem] mx-auto mt-[1rem] p-[2rem] text-text bg-secondary rounded-lg flex flex-col gap-[0.5rem]'>
                 {auctionData.bidders?.map((bidder) => (
