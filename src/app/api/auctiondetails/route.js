@@ -25,7 +25,7 @@ export async function POST(request){
         return NextResponse.json({
             message: "Fetched",
             data: {
-                auctionDetails,
+                auctionDetails, 
                 bidders,
             }
         })
