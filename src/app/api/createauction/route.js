@@ -15,7 +15,15 @@ export async function POST(request){
         const reqBody = await request.json();
 
         const {title, description, price, startDate, endDate} = reqBody;
+
+        const currentDate = new Date();
+        const auctionStartDate = new Date(startDate);
+        const auctionEndDate = new Date(endDate);
+        const isOpen = currentDate >= auctionStartDate && currentDate <= auctionEndDate;
+
         const user = await User.findOne({_id: userId});
+
+        // add here function to check if todays date is greater than equal start & less than equal to end date then make isOpen true else false
 
         const newAuction = new Auction({
             user: user._id,
@@ -24,9 +32,8 @@ export async function POST(request){
             price: price,
             startDate: startDate,
             endDate: endDate,
-            isOpen: false,
+            isOpen: isOpen,
         })
-
         
         const savedAuction = await newAuction.save();
 
