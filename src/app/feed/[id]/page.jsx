@@ -75,7 +75,10 @@ function AuctionIdPage() {
         }
         try {
             const res = await axios.post("/api/bid", bidDetails);
-            router.refresh();
+            setErrors("Bid placed successfully !");
+            setTimeout(() => {
+                setErrors(null);
+            }, 3000);
         } catch (error) {
             setErrors(error);
             setTimeout(() => {
@@ -111,7 +114,7 @@ function AuctionIdPage() {
                       <p className='text-lg'>{auctionData.auctionDetails?.description}</p>
                       <span className='text-accent font-bold text-[1.8rem] mt-[1rem]'>₹ {auctionData.auctionDetails?.price}</span>
 
-                      {(sameOwner || !auctionData.auctionDetails?.isOpen) ? null : (
+                      {sameOwner ? null : (
                         <>
                           <input
                             type="number"

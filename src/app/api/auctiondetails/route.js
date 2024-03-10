@@ -15,7 +15,7 @@ export async function POST(request){
         const startDate = new Date(auctionDetails.startDate).getTime()
         const endDate = new Date(auctionDetails.endDate).getTime()
 
-        auctionDetails.isOpen = startDate <= today && endDate >= today;
+        const isOpen = startDate <= today && endDate >= today;
 
         await auctionDetails.save();
 
@@ -27,6 +27,7 @@ export async function POST(request){
             data: {
                 auctionDetails, 
                 bidders,
+                isOpen
             }
         })
     } catch (error) {
