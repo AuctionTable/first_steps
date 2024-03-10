@@ -10,7 +10,6 @@ const auctionSchema = new mongoose.Schema({
     price: Number,
     startDate: Date,
     endDate: Date,
-    isOpen: Boolean,
     bidders: [{
         user: {
             type: mongoose.Schema.Types.ObjectId,

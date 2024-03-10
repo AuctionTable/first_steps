@@ -17,7 +17,7 @@ export async function GET(request){
             const posts = await Auction.find({
                 $and: [
                     { endDate: { $gte: today } },
-                    { isOpen: false } // Directly check if isOpen is true
+                    { startDate: { $gte: today } }
                 ]
             })
             console.log(posts)
@@ -31,7 +31,7 @@ export async function GET(request){
             const posts = await Auction.find({
                 $and: [
                     { endDate: { $gte: today } },
-                    { isOpen: true } // Directly check if isOpen is true
+                    { startDate: { $lte: today } }
                 ]
             })
             console.log(posts)
