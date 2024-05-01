@@ -30,9 +30,11 @@ function AuctionIdPage() {
             try {
                 const id = pathname.split('/')[2];
                 const res = await axios.post("/api/auctiondetails", { auctionId: id });
+                console.log(res)
                 setAuctionData(res.data.data);
+                
             } catch (error) {
-                setErrors(error);
+                setErrors(error.message);
                 setTimeout(() => {
                     setErrors(null);
                 }, 3000);
@@ -42,7 +44,12 @@ function AuctionIdPage() {
         };
 
         fetchData();
+        
     }, [pathname]);
+
+    useEffect(() => {
+        console.log(auctionData)
+    },[auctionData])
 
     useEffect(() => {
         const verify = async () => {
@@ -135,9 +142,9 @@ function AuctionIdPage() {
                 )}
 
             <div className='w-[85%] sm:w-[26rem] md:w-[30rem] mx-auto mt-[1rem] p-[2rem] text-text bg-secondary rounded-lg flex flex-col gap-[0.5rem]'>
-                {auctionData.bidders?.map((bidder) => (
+                {auctionData.auctionDetails?.bidders?.map((bidder) => (
                     <p key={bidder._id} className='text-lg'>
-                        Bidder: {bidder.username}
+                        {bidder.user.substring(0, 5)} bidded at {bidder.biddedAmount}
                     </p>
                 ))}
             </div>

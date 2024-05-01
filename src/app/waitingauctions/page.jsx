@@ -26,11 +26,11 @@ function page() {
       <a className='btn-primary bg-secondary text-accent outline-accent absolute right-0 mr-[1rem] sm:mr-[2rem] py-[0.25rem]' href="/profile">Profile</a>
       <h1 className="w-[100%] text-[1.5rem] text-center font-semibold">Live Auctions</h1>
       <input type="text" placeholder='search' onChange={(e) => setFilter(e.target.value)} className='w-[100%] p-[0.5rem]' />
-      <div className='w-[100%] flex flex-wrap gap-[1rem] justify-between'>
+      { posts.length > 0 ? (<div className='w-[100%] flex flex-wrap gap-[1rem] justify-between'>
         { posts.map((post, key) => (
           <Cards key={key} details={post} />
         ))}
-      </div>
+      </div>) : (<h1>no auctions to be lived</h1>)}
     </div>
   );
 }
