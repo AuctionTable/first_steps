@@ -48,10 +48,6 @@ function AuctionIdPage() {
     }, [pathname]);
 
     useEffect(() => {
-        console.log(auctionData)
-    },[auctionData])
-
-    useEffect(() => {
         const verify = async () => {
             try {
                 const response = await axios.get("/api/userdetails");
